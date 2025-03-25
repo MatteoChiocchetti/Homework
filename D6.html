@@ -38,16 +38,17 @@
       <h1>Questo è il titolo della pagina</h1>
       <h2>Questo è il sottotitolo della pagina</h2>
     </div>
+    <p>sono un'altro paragrafo</p>
 
     <div>
       <hr />
-
+      <a href="https://Unify.com/it/">Questo link porta al sito di Unify</a>
       <ul id="firstList">
         <li>1st</li>
         <li>2nd</li>
         <li>3rd</li>
       </ul>
-
+      <a href="https://Oakley.com/it/">Questo link porta al sito di Oakley</a>
       <ul id="secondList">
         <li>1st</li>
         <li>2nd</li>
@@ -103,9 +104,11 @@
         */
 
       const changePcontent = function () {
-        const text = document.querySelector("p");
+        const text = document.querySelectorAll("div p");
         // for (let i = 0; i < changePcontent.lenght; i++);
-        text.innerText = "I've also changed the text of the paragraph!";
+        text.forEach((p) => {
+          p.innerText = "I've also changed the text of the paragraph!";
+        });
         console.log(text);
       };
       changePcontent();
@@ -115,8 +118,10 @@
         */
 
       const changeUrls = function () {
-        const URL = document.querySelector("a");
-        URL.href = "https://www.google.com";
+        const URL = document.querySelectorAll("a:not(footer a)");
+        URL.forEach((a) => {
+          a.href = "https://www.google.com";
+        });
       };
       changeUrls();
 
@@ -162,8 +167,10 @@
 
       const paintItGreen = function () {
         const lists = document.querySelectorAll("ul");
-        // console.log(lists);
-        lists.style.backgroundColor = "green";
+
+        lists.forEach((ul) => {
+          ul.style.backgroundColor = "green";
+        });
       };
       paintItGreen();
 
@@ -171,7 +178,13 @@
          Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
         */
 
-      const makeItClickable = function () {};
+      const makeItClickable = function () {
+        const h1 = document.querySelector("h1");
+        h1.onclick = function () {
+          h1.innerText = h1.innerText.slice(0, -1);
+        };
+      };
+      makeItClickable();
 
       /* ESERCIZIO 10
          Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
@@ -202,7 +215,13 @@
         Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
       */
 
-      const changeColorWithRandom = function () {};
+      const changeColorWithRandom = function () {
+        const h2 = document.getElementById("changeMyColor");
+        const red = Math.floor(Math.random() * 256);
+        const green = Math.floor(Math.random() * 256);
+        const blue = Math.floor(Math.random() * 256);
+        h2.style.backgroundColor = `rgb(${r} ${g} ${b} /100%)`;
+      };
     </script>
   </body>
 </html>
